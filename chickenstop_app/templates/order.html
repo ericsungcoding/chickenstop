@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicken Stop - Order</title>
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class='container'>
+        <div class='header'>
+            <h1><a href='/orders'>Chicken Stop</a></h1>
+            <div class='nav'>
+                <ul>
+                    <li><a href='/orders'>Home</a></li>
+                    <li><a href='/orders/order'>Order</a></li>
+                    <li><a href='/orders/account'>Account</a></li>
+                    <li><a href='/logout'>Log Out</a></li>
+                </ul> 
+            </div>
+        </div>
+        <div class='order_form'>
+            <h1>Create Your Order</h1>
+            <form action='/orders/create_order' method='POST'>
+            {% csrf_token %}
+                <h4><em>Choose Your Sandwich:</em></h4>
+                <select name='sandwich'>
+                    <option value='Spicy Sandwich'>Spicy Sandwich</option>
+                    <option value='Sweet and Spicy Sandwich'>Sweet and Spicy Sandwich</option>
+                </select> 
+                <h4><em>Add a Side of Pickles:</em></h4>
+                    <p>Yes <input type='radio' name='pickles' value='Yes' required></p>
+                    <p>No <input type='radio' name='pickles' value='No' required></p>
+                <h4><em>Choose Your Free Side:</em></h4>
+                    <p>Waffle Fries <input type='radio' name='side' value='Waffle Fries' required></p>
+                    <p>Chicken Fingers <input type='radio' name='side' value='Chicken Fingers' required></p>
+                    <p>Cheesecake Slice <input type='radio' name='side' value='Cheesecake Slice' required></p>
+                <br>
+                <button type='submit'>Check Out</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

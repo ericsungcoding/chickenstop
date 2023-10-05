@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{user.first_name}}'s Account</title>
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class='container'>
+        <div class='header'>
+            <h1><a href='/orders'>Chicken Stop</a></h1>
+            <div class='nav'>
+                <ul>
+                    <li><a href='/orders'>Home</a></li>
+                    <li><a href='/orders/order'>Order</a></li>
+                    <li><a href='/orders/account'>Account</a></li>
+                    <li><a href='/logout'>Log Out</a></li>
+                </ul> 
+            </div>
+        </div>
+        <div class='account'>
+            <h1>Account Info</h1>
+            <form action='/orders/update' method='POST'>
+            {% csrf_token %}
+                <p>First Name <input type='text' name='first_name' value='{{user.first_name}}'></p>
+                <p>Last Name <input type='text' name='last_name' value='{{user.last_name}}'></p>
+                <p>Email <input type='text' name='email' value='{{user.email}}'></p>
+                <p>Address <input type='text' name='address' value='{{user.address}}'></p>
+                <p>City <input type='text' name='city' value='{{user.city}}'></p>
+                <p>State <input type='text' name='state' value='{{user.state}}'></p>
+                <button type='submit'>Update</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

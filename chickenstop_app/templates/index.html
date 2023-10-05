@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicken Stop - Log In</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class='login'>
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %} 
+        <h1>Chicken Stop</h1>
+        <form action='/login' method='POST'>
+            {% csrf_token %}
+            <p>Email</p>
+            <p><input type='text' name='email'></p>
+            <p>Password</p> 
+            <p><input type='password' name='password'></p>
+            <button type='submit'>Log In</button>
+        </form>
+        <br><br>
+        <a href='/register_page'>Don't Have an Account? Register</a>
+    </div>
+</body>
+</html>

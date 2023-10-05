@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicken Stop - {{user.first_name}}'s Account</title>
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class='container'>
+        <div class='header'>
+            <h1><a href='/orders'>Chicken Stop</a></h1>
+            <div class='nav'>
+                <ul>
+                    <li><a href='/orders'>Home</a></li>
+                    <li><a href='/orders/order'>Order</a></li>
+                    <li><a href='/orders/account'>Account</a></li>
+                    <li><a href='/logout'>Log Out</a></li>
+                </ul> 
+            </div>
+        </div>
+        <div class='main_content'>
+            <h2>Your Past Orders</h2>
+            <div class='all_past_orders'>
+                {% for order in user.orders.all %}
+                    <div class='past_order'>
+                        <p>Sandwich Type: <b>{{order.sandwich}}</b></p>
+                        <p>Side of Pickles: <b>{{order.pickles}}</b></p>
+                        <p>Choice of Side: <b>{{order.side}}</b></p>
+                        <p>Date Ordered: <b>{{order.created_at}}</b></p>
+                        <p><a href="/orders/{{order.id}}/like">Like</a></p>
+                        <p><b><a href='/orders/{{order.id}}/reorder'>Reorder</a></b></p>
+                    </div>
+                {% endfor %}
+            </div>
+            <h2>Liked Orders</h2>
+            <div class='all_liked_orders'>
+                {% for liked_order in user.liked_orders.all %}
+                    <div class='liked_order'>
+                        <p>Sandwich Type: <b>{{liked_order.sandwich}}</b></p>
+                        <p>Side of Pickles: <b>{{liked_order.pickles}}</b></p>
+                        <p>Choice of Side: <b>{{liked_order.side}}</b></p>
+                        <p>Date Ordered: <b>{{liked_order.created_at}}</b></p>
+                        <p><b><a href='/orders/{{liked_order.id}}/reorder'>Reorder</a></b></p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
